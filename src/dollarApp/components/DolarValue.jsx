@@ -16,13 +16,13 @@ export const DolarValue = () => {
          titulo === "Solidario (Turista)"
       ) {
          return (
-            <h1 className="text-center text-xl text-[#5f7ff5]">
+            <h1 className="text-center text-xl text-[#293d83]">
                Dolar {titulo}
             </h1>
          );
       } else {
          return (
-            <h1 className="text-center text-2xl text-[#5f7ff5]">
+            <h1 className="text-center text-2xl text-[#293d83]">
                Dolar {titulo}
             </h1>
          );
@@ -38,7 +38,7 @@ export const DolarValue = () => {
             Volver al inicio
          </Link>
          <div className="flex flex-col justify-center items-center m-5">
-            <h1 className="text-5rcxl md:text-7xl font-dolar mt-6 text-black animate-fade-left">
+            <h1 className="text-5xl md:text-7xl font-dolar mt-6 text-black animate-fade-left">
                Dolar Hoy
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-6 mt-12">
@@ -47,14 +47,14 @@ export const DolarValue = () => {
                      key={dolar.nombre}
                      className="group animate-fade-down animate-once animate-duration-[900ms] animate-delay-[400ms]"
                   >
-                     <span className="absolute bg-[#5f7ff5] w-60 h-36 translate-x-2 translate-y-2 rounded-2xl " />
-                     <div className="relative w-60 h-36 rounded-2xl overflow-hidden font-dolar bg-[#fff7ef] group-hover:translate-x-1 group-hover:translate-y-1 duration-200 ease-in-out">
+                     <span className="absolute bg-[#3c60de] w-60 h-36 translate-x-2 translate-y-2 rounded-2xl " />
+                     <div className="relative w-60 h-36 rounded-2xl border-2 border-[#3c60de] overflow-hidden font-dolar bg-[#fff7ef] group-hover:translate-x-1 group-hover:translate-y-1 duration-200 ease-in-out">
                         <div className="flex justify-center items-center w-full h-14 m-2">
                            {tituloFormat(dolar.nombre)}
                         </div>
                         <div className="flex justify-center items-center gap-12 mt-1 mb-4">
                            <div className="flex flex-col items-center">
-                              <h4 className="text-[#b0c631]">Compra</h4>
+                              <h4 className="text-[#ceaa32]">Compra</h4>
                               <p className="text-xl">
                                  $
                                  {dolar.compra
@@ -63,7 +63,7 @@ export const DolarValue = () => {
                               </p>
                            </div>
                            <div className="flex flex-col items-center">
-                              <h4 className="text-[#b0c631]">Venta</h4>
+                              <h4 className="text-[#ceaa32]">Venta</h4>
                               <p className="text-xl ">
                                  ${dolar.venta.toFixed(2)}
                               </p>
@@ -77,7 +77,7 @@ export const DolarValue = () => {
                <h2 className="text-2xl md:text-4xl font-dolar mt-6 text-black animate-fade-left animate-duration-[900ms] animate-delay-[500ms]">
                   Última actualización
                </h2>
-               <h3 className="text-xl md:text-2xl font-dolar text-[#5f7ff5] animate-fade-left animate-duration-[900ms] animate-delay-[600ms] mt-2">
+               <h3 className="text-xl md:text-2xl font-dolar text-[#3c60de] animate-fade-left animate-duration-[900ms] animate-delay-[600ms] mt-2">
                   {formatoDate(
                      data?.map(
                         ({ fechaActualizacion }) => fechaActualizacion,

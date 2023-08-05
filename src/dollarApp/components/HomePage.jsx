@@ -19,7 +19,7 @@ export const HomePage = () => {
                   Ver Dolar
                </span>
             </Link>
-            <Link
+            {/* <Link
                to={"/calcular"}
                className="group relative inline-block focus:outline-none animate-fade-down animate-once animate-duration-[900ms] animate-delay-[400ms]"
             >
@@ -27,7 +27,7 @@ export const HomePage = () => {
                <span className="text-md md:text-xl font-dolarFont font-bold text-black block border-2 border-black px-10 py-3 bg-[#fff7ef] transition-transform active:border-black active:bg-gray-200 -translate-x-1.5 -translate-y-1.5 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 rounded-md">
                   Calculadora
                </span>
-            </Link>
+            </Link> */}
          </div>
       </div>
    );
