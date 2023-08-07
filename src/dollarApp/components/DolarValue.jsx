@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useGetApiDolar } from "../hooks/useGetApiDolar";
+import { Loader } from "./Loader";
 
 export const DolarValue = () => {
-   const { data } = useGetApiDolar();
+   const { data, isFetching } = useGetApiDolar();
 
    const formatoDate = (fecha) => {
       const formatoDate = new Date(fecha);
@@ -37,6 +38,7 @@ export const DolarValue = () => {
          >
             Volver al inicio
          </Link>
+         {isFetching && <Loader />}
          <div className="flex flex-col justify-center items-center m-5">
             <h1 className="text-5xl md:text-7xl font-dolar mt-6 text-black animate-fade-left">
                Dolar Hoy
