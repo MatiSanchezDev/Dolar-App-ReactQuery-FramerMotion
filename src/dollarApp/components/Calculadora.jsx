@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useGetApiDolar } from "../hooks/useGetApiDolar";
+import { Error } from "./Error";
 import { Loader } from "./Loader";
 
 export const Calculadora = () => {
-   const { data, isFetching } = useGetApiDolar();
+   const { data, isFetching, isError } = useGetApiDolar();
    const [dolarInput, setDolarInput] = useState(1);
+
+   if(isError) return <Error />
 
    const onInputChange = (e) => {
       const inputValue = e.target.value;
@@ -16,7 +19,7 @@ export const Calculadora = () => {
 
    const calculadora = (dolarAct, dolarInput) => {
       const inputUser = Number(dolarInput);
-      const dolarOficial = dolarAct?.map(({ venta }) => venta)[0];
+      const dolarOficial = dolarAct.oficial.value_buy;
       const calDolarOficial = dolarOficial * inputUser;
       const impPais = (inputUser * dolarOficial * 30) / 100;
       const retencion = (inputUser * dolarOficial * 45) / 100;
@@ -101,7 +104,7 @@ export const Calculadora = () => {
                </form>
             </div>
             <div className="mt-8">
-               {dolarInput ? calculadora(data, dolarInput) : ""}
+               {dolarInput ? data && calculadora(data, dolarInput) : ""}
             </div>
          </div>
       </>

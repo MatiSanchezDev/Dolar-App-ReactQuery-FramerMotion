@@ -1,15 +1,17 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { formatDate } from "../../helpers/getFormatDate";
 import { useGetApiDolar } from "../hooks/useGetApiDolar";
+import { CardDolar } from "./CardDolar";
+import { Error } from "./Error";
 import { Loader } from "./Loader";
 
 export const DolarValue = () => {
-   const { data, isFetching } = useGetApiDolar();
+   const { data, isFetching, isError } = useGetApiDolar();
+   const navigate = useNavigate()
 
-   const formatoDate = (fecha) => {
-      const formatoDate = new Date(fecha);
-      const fechaActualizada = formatoDate.toLocaleString().substring(0, 15);
-      return fechaActualizada;
-   };
+   if (isError) return <Error />
+
+/* 
 
    const tituloFormat = (titulo) => {
       if (
@@ -28,17 +30,49 @@ export const DolarValue = () => {
             </h1>
          );
       }
-   };
+   }; */
 
-   return (
+   console.log(data && formatDate(data.last_update))
+   return ( 
       <>
-         <Link
-            to={"/"}
-            className="text-lg relative top-4 left-4 font-dolar underline decoration-2"
+         <span
+            className="text-lg relative top-4 left-4 font-dolar underline decoration-2 cursor-pointer"
+            onClick={() => {
+               if (window.history.state && window.history.state.idx > 0) {
+                 navigate(-1);
+               } else {
+                 navigate("/", { replace: true });
+               }
+             }}
          >
             Volver al inicio
-         </Link>
+         </span>
          {isFetching && <Loader />}
+         <div className="flex flex-col justify-center items-center m-5">
+            <h1 className="text-4xl md:text-6xl font-dolar mt-6 text-black animate-fade-left">
+               Cotización Hoy
+            </h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center gap-6 mt-12">
+                  {data && <CardDolar data={data.oficial} cardName={"Dolar Oficial"} />}
+                  {data &&<CardDolar data={data.blue} cardName={"Dolar Blue"} />}
+                  {data &&<CardDolar data={data.oficial_euro} cardName={"Euro Oficial"} />}
+                  {data &&<CardDolar data={data.blue_euro} cardName={"Euro Blue"} />}
+            </div>
+            <div className="flex flex-col justify-center items-center mt-7">
+               <h2 className="text-2xl md:text-4xl font-dolar mt-6 text-black animate-fade-left animate-duration-[900ms] animate-delay-[500ms]">
+                  Última actualización
+               </h2>
+               <h3 className="text-xl md:text-2xl font-dolar text-[#3c60de] animate-fade-left animate-duration-[900ms] animate-delay-[600ms] mt-2">
+                  {formatDate(data && data.last_update)}
+               </h3>
+            </div>
+         </div>
+      </> 
+   );
+};
+
+
+/* {isFetching && <Loader />}
          <div className="flex flex-col justify-center items-center m-5">
             <h1 className="text-5xl md:text-7xl font-dolar mt-6 text-black animate-fade-left">
                Dolar Hoy
@@ -87,7 +121,4 @@ export const DolarValue = () => {
                   )}
                </h3>
             </div>
-         </div>
-      </>
-   );
-};
+         </div> */
